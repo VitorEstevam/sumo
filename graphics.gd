@@ -1,17 +1,17 @@
 extends Node2D
 
+var players_origin 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var players
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	players = get_node("players")
+	players_origin = players.position
 
 func _on_Game_players_pos_changed(pos):
-	print("pos has changed")
+	players.position.x = players_origin.x + (pos * 40)
+
+
+func _on_Game_player_won(player_name):
+	print(player_name + " won!")
 	pass # Replace with function body.
-	
-	#get_child()
