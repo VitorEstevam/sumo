@@ -1,0 +1,152 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://assets/05_background_03-02t.png" type="Texture" id=1]
+[ext_resource path="res://assets/dark.png" type="Texture" id=2]
+[ext_resource path="res://assets/05_background_05.png" type="Texture" id=3]
+[ext_resource path="res://assets/01_sumo_07.png" type="Texture" id=4]
+[ext_resource path="res://scripts/inputs.gd" type="Script" id=5]
+[ext_resource path="res://scripts/camera.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/game_scene.gd" type="Script" id=7]
+[ext_resource path="res://scripts/graphics.gd" type="Script" id=8]
+[ext_resource path="res://assets/go3v2.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://assets/05_background_01.png" type="Texture" id=10]
+[ext_resource path="res://assets/05_background_02.png" type="Texture" id=11]
+[ext_resource path="res://Scenes/sound.gd" type="Script" id=12]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+use_filter = true
+font_data = ExtResource( 9 )
+
+[node name="game_scene" type="Node2D"]
+script = ExtResource( 7 )
+
+[node name="graphics" type="Node2D" parent="."]
+script = ExtResource( 8 )
+
+[node name="Polygon2D" type="Polygon2D" parent="graphics"]
+position = Vector2( 0, 13.7838 )
+scale = Vector2( 1, 1.45946 )
+color = Color( 0.172549, 0.105882, 0.180392, 1 )
+polygon = PoolVector2Array( -53, 858, 1447, 829, 1436, -30, -64, -27 )
+
+[node name="TextureRect" type="TextureRect" parent="graphics"]
+margin_top = -300.0
+margin_right = 1283.0
+margin_bottom = 508.0
+size_flags_stretch_ratio = 0.0
+texture = ExtResource( 10 )
+expand = true
+stretch_mode = 6
+
+[node name="TextureRect2" type="TextureRect" parent="graphics"]
+margin_left = 112.0
+margin_top = 335.0
+margin_right = 1186.0
+margin_bottom = 774.0
+texture = ExtResource( 11 )
+expand = true
+
+[node name="TextureRect3" type="TextureRect" parent="graphics"]
+margin_left = -28.0
+margin_top = 192.0
+margin_right = 228.0
+margin_bottom = 448.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="TextureRect4" type="TextureRect" parent="graphics"]
+margin_left = 1072.0
+margin_top = 262.0
+margin_right = 1328.0
+margin_bottom = 518.0
+texture = ExtResource( 3 )
+expand = true
+
+[node name="players" type="Node2D" parent="graphics"]
+position = Vector2( 570, 410 )
+
+[node name="player1" type="Sprite" parent="graphics/players"]
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 4 )
+hframes = 3
+
+[node name="player2" type="Sprite" parent="graphics/players"]
+position = Vector2( 150, 0 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 4 )
+flip_h = true
+hframes = 3
+
+[node name="gameend" type="Node2D" parent="graphics"]
+
+[node name="background" type="TextureRect" parent="graphics/gameend"]
+margin_right = 1283.0
+margin_bottom = 719.0
+texture = ExtResource( 2 )
+expand = true
+
+[node name="house" type="TextureRect" parent="graphics/gameend"]
+margin_left = 335.0
+margin_top = 91.0
+margin_right = 964.0
+margin_bottom = 662.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 7
+
+[node name="Label" type="Label" parent="graphics/gameend"]
+margin_left = 483.0
+margin_top = 439.0
+margin_right = 818.0
+margin_bottom = 553.0
+custom_fonts/font = SubResource( 1 )
+text = "Player 1 venceu!"
+align = 1
+valign = 1
+
+[node name="Label2" type="Label" parent="graphics/gameend"]
+margin_left = 289.0
+margin_top = 505.0
+margin_right = 1011.0
+margin_bottom = 619.0
+custom_fonts/font = SubResource( 2 )
+text = "Aperte Enter/Start 
+para jogar de novo"
+align = 1
+valign = 1
+
+[node name="camera" type="Camera2D" parent="."]
+anchor_mode = 0
+current = true
+script = ExtResource( 6 )
+
+[node name="input" type="Node2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="sound" type="Node2D" parent="."]
+script = ExtResource( 12 )
+
+[node name="background" type="AudioStreamPlayer2D" parent="sound"]
+volume_db = -15.816
+
+[node name="effect" type="AudioStreamPlayer2D" parent="sound"]
+volume_db = -18.769
+
+[connection signal="player_won" from="." to="graphics" method="_on_Game_player_won"]
+[connection signal="players_pos_changed" from="." to="graphics" method="_on_Game_players_pos_changed"]
+[connection signal="players_pos_changed" from="." to="camera" method="add_trauma"]
+[connection signal="players_pos_changed" from="." to="sound" method="_on_punch"]
+[connection signal="state_changed" from="." to="graphics" method="_on_game_scene_state_changed"]
+[connection signal="state_changed" from="." to="sound" method="_on_game_scene_state_changed"]
+[connection signal="enter_pressed" from="input" to="." method="_on_input_enter_pressed"]
+[connection signal="player1_pressed" from="input" to="." method="_on_input_player1_pressed"]
+[connection signal="player2_pressed" from="input" to="." method="_on_input_player2_pressed"]

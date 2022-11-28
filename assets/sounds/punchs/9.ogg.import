@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/9.ogg-bc8c3d887188600a33808c309ea5c963.oggstr"
+
+[deps]
+
+source_file="res://assets/sounds/punchs/9.ogg"
+dest_files=[ "res://.import/9.ogg-bc8c3d887188600a33808c309ea5c963.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0
