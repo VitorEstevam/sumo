@@ -5,3 +5,5 @@
 ![01_sumo_02](https://user-images.githubusercontent.com/55667307/204626337-df69e11c-ded7-4001-9587-c36bef95143a.png)
 
 [Download the game](https://github.com/VitorEstevam/sumo/raw/main/sumo.zip)
+
+Assets of ShimejiKajiru available here https://sdkfz181tiger.itch.io/assets-for-sumo-pixelart-games
