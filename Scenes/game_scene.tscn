@@ -135,10 +135,10 @@ script = ExtResource( 5 )
 [node name="sound" type="Node2D" parent="."]
 script = ExtResource( 12 )
 
-[node name="background" type="AudioStreamPlayer2D" parent="sound"]
+[node name="background" type="AudioStreamPlayer" parent="sound"]
 volume_db = -15.816
 
-[node name="effect" type="AudioStreamPlayer2D" parent="sound"]
+[node name="effect" type="AudioStreamPlayer" parent="sound"]
 volume_db = -18.769
 
 [connection signal="player_won" from="." to="graphics" method="_on_Game_player_won"]
