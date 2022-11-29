@@ -32,12 +32,12 @@ func _set_player_pos(pos):
 		players_pos+=pos
 
 func _on_input_player1_pressed():
-	if(randi() % 6 != 0 ):
+	if(randi() % 10 != 0 ):
 		_set_player_pos(1)
 		emit_signal("players_pos_changed", players_pos)
 
 func _on_input_player2_pressed():
-	if(randi() % 6 != 0 ):
+	if(randi() % 10 != 0 ):
 		_set_player_pos(-1)
 		emit_signal("players_pos_changed", players_pos)
 
